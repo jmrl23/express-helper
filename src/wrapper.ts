@@ -1,7 +1,5 @@
 import type { RequestHandler } from 'express';
 
-type NestedArray<T> = Array<T> | Array<NestedArray<T>>;
-
 /**
  * Wrapper
  *
@@ -64,3 +62,5 @@ export const wrapper = function wrapper(
 
   return wrappedRequestHandlers;
 };
+
+type NestedArray<T> = Array<T> | Array<NestedArray<T>>;

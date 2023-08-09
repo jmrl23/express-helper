@@ -42,7 +42,7 @@ export const registerControllers = function registerControllers(
   const filteredFiles = files.filter((file) =>
     file.match(controllerIdentifierPattern),
   );
-  const registerControllers: RegisteredController[] = [];
+  const registeredControllers: RegisteredController[] = [];
 
   for (const file of filteredFiles) {
     const controllerName = getControllerName(
@@ -57,11 +57,11 @@ export const registerControllers = function registerControllers(
     if (Object.getPrototypeOf(controller).toString() !== Router.toString())
       continue;
 
-    registerControllers.push({ filePath: file, controller: controllerName });
+    registeredControllers.push({ filePath: file, controller: controllerName });
     mainController.use(controllerName, controller);
   }
 
-  callback(registerControllers);
+  callback(registeredControllers);
 
   return mainController;
 };

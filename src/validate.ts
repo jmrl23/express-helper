@@ -3,8 +3,6 @@ import { validate as _validate } from 'class-validator';
 import { wrapper } from './wrapper';
 import { BadRequest, InternalServerError } from 'http-errors';
 
-export type ValidateTarget = 'PARAMS' | 'BODY' | 'QUERY';
-
 /**
  * Validate
  *
@@ -66,3 +64,5 @@ export const validate = function validate<T extends object>(
 
   return callback;
 };
+
+export type ValidateTarget = 'PARAMS' | 'BODY' | 'QUERY';
