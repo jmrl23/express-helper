@@ -1,6 +1,6 @@
 {
   "name": "@jmrl23/express-helper",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "main": "./build/main.js",
   "description": "Express helper",
   "repository": {

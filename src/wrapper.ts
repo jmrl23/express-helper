@@ -50,8 +50,6 @@ export const wrapper = function wrapper(
             }
             return;
           }
-
-          response.end();
         } catch (error: unknown) {
           if (!response.headersSent) next(error);
         }
