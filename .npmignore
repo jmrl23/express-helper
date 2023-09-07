@@ -2,3 +2,4 @@ node_modules/
 .gitignore
 yarn-error.log
 src/
+tsconfig.json

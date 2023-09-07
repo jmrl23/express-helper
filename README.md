@@ -59,7 +59,7 @@ app.use(registerControllers(targetDirectory));
 Used in wrapping request handlers that might throw an error,
 also used in making shorter code by just returning the value
 itself instead of using the actual response object's method.
-It also accepts async callbacks. Returns an array, is some
+It also accepts async callbacks. Returns an array, in some
 cases you can spread it.
 
 - Syntax: `wrapper(...requestHandlers)`
@@ -90,14 +90,13 @@ Validate request object's `query`, `body`, or `params`.
 ```ts
 import { validate, vendors } from '@jmrl23/express-helper';
 
-const { IsString, Length } = vendors.classValidator;
-
 class UserLoginDto {
-  @IsString()
-  @Length(1, 30)
+  @vendors.classValidator.IsString()
+  @vendors.classValidator.Length(1, 30)
   readonly username: string;
-  @IsString()
-  @Length(1)
+
+  @vendors.classValidator.IsString()
+  @vendors.classValidator.Length(1)
   readonly password: string;
 }
 
@@ -117,7 +116,7 @@ app.post(
 
 ### vendors
 
-Use installed package that are already installed to prevent redundancy.
+Use installed package that may be helpful.
 
 - Available packages
   - [class-transformer](https://www.npmjs.com/package/class-transformer)
@@ -127,8 +126,6 @@ Use installed package that are already installed to prevent redundancy.
 ```ts
 import { vendors } from '@jmrl23/express-helper';
 
-const { BadRequest } = vendors.httpErrors;
-
 // use `BadRequest` from package `http-errors`
-throw new BadRequest('LOL');
+throw new vendors.httpErrors.BadRequest('LOL');
 ```
