@@ -1,11 +1,11 @@
 {
   "name": "@jmrl23/express-helper",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "main": "./build/main.js",
   "description": "Express helper",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jmrl23/express-helper"
+    "url": "git+https://github.com/jmrl23/express-helper.git"
   },
   "bugs": {
     "email": "gaiterajomariel@gmail.com",
