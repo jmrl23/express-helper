@@ -30,22 +30,22 @@ import { BadRequest, InternalServerError } from 'http-errors';
  */
 
 export const validate = function validate<T extends object>(
-  target: ValidateTarget,
+  object: ValidateObject,
   dtoClass: ClassConstructor<T>,
 ) {
   const [callback] = wrapper(async function (request, _response, next) {
-    const map: Record<ValidateTarget, unknown> = {
-      PARAMS: request.params,
-      BODY: request.body ?? {},
-      QUERY: request.query,
+    const map: Record<ValidateObject, unknown> = {
+      [ValidateObject.PARAMS]: request.params,
+      [ValidateObject.BODY]: request.body ?? {},
+      [ValidateObject.QUERY]: request.query,
     };
-    const targetObject = map[target];
+    const targetObject = map[object];
     const instance = plainToInstance(dtoClass, targetObject);
     const [validationError] = await _validate(instance, {
       stopAtFirstError: true,
     });
 
-    if (target === 'BODY' && request.body === undefined) {
+    if (object === ValidateObject.BODY && request.body === undefined) {
       throw new InternalServerError(
         'Cannot parse `request.body`, kindly use `express.json`',
       );
@@ -58,11 +58,15 @@ export const validate = function validate<T extends object>(
       }
     }
 
-    map[target] = instance;
+    map[object] = instance;
     next();
   });
 
   return callback;
 };
 
-export type ValidateTarget = 'PARAMS' | 'BODY' | 'QUERY';
+export enum ValidateObject {
+  PARAMS,
+  BODY,
+  QUERY,
+}

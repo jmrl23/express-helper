@@ -5,7 +5,7 @@ import { Router } from 'express';
 /**
  * Register controllers
  *
- * Automatic register controllers on a selected directory.
+ * Register all the router from a directory inside a single router instance.
  *
  * Rules:
  *  - Filename should be in `[name].controller.{ts|js}` format
@@ -109,6 +109,7 @@ export type RegisteredController = {
   filePath: string;
   controller: string;
 };
+
 export type RegisterControllersCallback = (
   registeredControllers: RegisteredController[],
 ) => void;

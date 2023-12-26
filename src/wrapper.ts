@@ -3,10 +3,9 @@ import type { RequestHandler } from 'express';
 /**
  * Wrapper
  *
- * Used in wrapping request handlers that might throw an error,
- * also used in making shorter code by just returning the value
- * itself instead of using the actual response object's method.
- * It also accepts async callbacks.
+ * Used in wrapping request handlers to handle errors. It also
+ * have the functionality to "just return" the value you want
+ * instead of using the response's methods.
  *
  * @example
  * ```ts
